@@ -1485,7 +1485,7 @@ describe('Query.run() should take options', function(){
   it('Query.group("num").count().run() should not work', function(done){
     Model.group('num').count().run().then(function(result) {
       done(new Error("Should have thrown an error"))
-    }).error(function(err) {
+    }).catch(function(err) {
       done()
     });
   });
@@ -1788,7 +1788,7 @@ describe('In place writes', function() {
       return Model.get(doc.id).update({num: r.expr("foo")}).run()
     }).then(function() {
       done(new Error("Was expecting an error"));
-    }).error(function(error) {
+    }).catch(function(error) {
       assert(error.message.match("The write failed, and the changes were reverted"));
       Model.get(doc.id).run().then(function(result) {
         assert.deepEqual(doc, result);
@@ -1806,7 +1806,7 @@ describe('In place writes', function() {
       return Model.get(doc.id).update({num: r.expr("foo")}).run()
     }).then(function() {
       done(new Error("Was expecting an error"));
-    }).error(function(error) {
+    }).catch(function(error) {
       assert(error.message.match("The write failed, and the changes were reverted"));
       Model.get(doc.id).run().then(function(result) {
         assert.deepEqual(doc, result);
@@ -1860,7 +1860,7 @@ describe('In place writes', function() {
       return Model.update({num: r.expr("foo")}).run()
     }).then(function() {
       done(new Error("Was expecting an error"));
-    }).error(function(error) {
+    }).catch(function(error) {
       assert(error.message.match("The write failed, and the changes were reverted"));
       Model.run().then(function(result) {
         result.sort(function(a, b) { return (a.num > b.num) ? 1 : -1; });
@@ -1880,7 +1880,7 @@ describe('In place writes', function() {
       return Model.update({num: r.expr("foo")}).run()
     }).then(function() {
       done(new Error("Was expecting an error"));
-    }).error(function(error) {
+    }).catch(function(error) {
       assert(error.message.match("The write failed, and the changes were reverted"));
       Model.run().then(function(result) {
         result.sort(function(a, b) { return (a.num > b.num) ? 1 : -1; });
@@ -1901,7 +1901,7 @@ describe('In place writes', function() {
       return Model.get(doc.id).update({num: "foo"}).run()
     }).then(function() {
       done(new Error("Was expecting an error"));
-    }).error(function(error) {
+    }).catch(function(error) {
       assert(error.message.match(/^The partial value is not valid, so the write was not executed. The original error was:/));
       Model.get(doc.id).run().then(function(result) {
         assert.deepEqual(doc, result);

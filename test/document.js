@@ -2797,7 +2797,7 @@ describe('hooks', function() {
 
     var doc = new Model({id: "foobar"}).then(function() {
       done(new Error("Expecting error"));
-    }).error(function(err) {
+    }).catch(function(err) {
       assert.equal(err.message, "Async error thrown by a hook");
       done();
     });
@@ -2896,7 +2896,7 @@ describe('hooks', function() {
     var doc = new Model({id: "foobar"});
     doc.validate().then(function() {
       done(new Error("Expecting error"));
-    }).error(function(err) {
+    }).catch(function(err) {
       assert.equal(err.message, "Async error thrown by a hook");
       done();
     });
