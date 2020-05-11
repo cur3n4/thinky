@@ -3,4 +3,3 @@ exports.port = process.env['WERCKER_RETHINKDB_PORT'] || 28015;
 exports.db = 'thinky_test';
 exports.user = 'admin';
 exports.password = 'admin';
-
